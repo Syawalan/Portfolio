@@ -2,6 +2,7 @@
 import Header from '../components/Header';
 import Welcome from '../components/Welcome.astro';
 import About from '../components/About';
+import Portfolio from '../components/Portfolio'
 import Layout from '../layouts/Layout.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -12,4 +13,5 @@ import Layout from '../layouts/Layout.astro';
 	<Header client:load/>
 	<Welcome />
 	<About client:load/>
+	<Portfolio client:load/>
 </Layout>
