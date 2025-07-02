@@ -11,7 +11,7 @@ const navItems = [
 
 export default function Header() {
   return(
-    <header className="fixed z-50 w-full md:w-[40%] left-1/2 -translate-x-1/2 top-auto bottom-0 md:top-0 md:bottom-auto bg-[#173B45] border2 border-[#347928] mx-auto md:rounded-full shadow-md">
+    <header className="fixed z-50 w-full md:w-[40%] left-1/2 -translate-x-1/2 mt-3 top-auto bottom-0 md:top-0 md:bottom-auto bg-[#173B45] border2 border-[#347928] mx-auto md:rounded-full shadow-md">
       <nav className="flex justify-between items-center px-4 md:px-8 py-2 md:py-4">
         {navItems.map((item, index) => (
           <a
