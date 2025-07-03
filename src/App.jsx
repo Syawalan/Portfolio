@@ -8,8 +8,19 @@ import AboutMe from './components/AboutMe'
 import Skills from './components/Skills'
 import Project from './components/Project'
 import Contact from './components/Contact'
+import Footer from './components/Footer'
+import Aos from 'aos'
+import 'aos/dist/aos.css';
+import { useEffect } from 'react'
 
 function App() {
+  useEffect(() => {
+    Aos.init({
+      duration: 1000,
+      once: true
+    })
+  }, [])
+
   return (
     <div className='bg-[#FFFBE6]'>
       <Header/>
@@ -18,6 +29,7 @@ function App() {
       <Skills/>
       <Project/>
       <Contact/>
+      <Footer/>
     </div>
   )
 }

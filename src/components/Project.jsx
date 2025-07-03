@@ -33,16 +33,15 @@ export default function Project() {
     <section id="projects" className="py-16 px-4 md:px-10 bg-white text-black">
       {/* judul */}
       <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl fw-bold">My Project</h2>
-        <div className="w-16 h-1 bg-black mx-auto mt-2 rounded">
-          <p className="text-gray-500 mt-2">Check out some of my recent work</p>
-        </div>
+        <h2 className="text-3xl md:text-4xl fw-bold" data-aos="fade-up">My Project</h2>
+        <div className="w-16 h-1 bg-black mx-auto mt-2 rounded"/>
+        <p className="text-gray-500 mt-2" data-aos="fade-up" data-aos-delay="100">Check out some of my recent work</p>
       </div>
 
       {/* gird project */}
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project, index) => (
-          <div key={index} className="border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition bg-white">
+          <div data-aos="fade-up" data-aos-delay={index * 100} key={index} className="border border-gray-200 p-2 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition bg-white">
             {/* gambar */}
             <div className="w-full h-48 bg-gray-200">
               <img src="" alt="" className="w-full h-full object-cover"/>
