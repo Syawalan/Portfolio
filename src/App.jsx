@@ -22,7 +22,7 @@ function App() {
   }, [])
 
   return (
-    <div className='bg-[#FFFBE6]'>
+    <div className='bg-[#00033a]'>
       <Header/>
       <Hero/>
       <AboutMe/>

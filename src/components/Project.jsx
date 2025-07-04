@@ -30,12 +30,12 @@ const projects = [
 
 export default function Project() {
   return(
-    <section id="projects" className="py-16 px-4 md:px-10 bg-white text-black">
+    <section id="projects" className="py-16 px-4 md:px-10 text-white">
       {/* judul */}
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-4xl fw-bold" data-aos="fade-up">My Project</h2>
-        <div className="w-16 h-1 bg-black mx-auto mt-2 rounded"/>
-        <p className="text-gray-500 mt-2" data-aos="fade-up" data-aos-delay="100">Check out some of my recent work</p>
+        <div className="w-16 h-1 bg-white mx-auto mt-2 rounded"/>
+        <p className="text-white mt-2" data-aos="fade-up" data-aos-delay="100">Check out some of my recent work</p>
       </div>
 
       {/* gird project */}
@@ -50,7 +50,7 @@ export default function Project() {
             {/* konten */}
             <div className="pt-4">
               <h3 className="text-xl fw-semibold mb-2">{project.title}</h3>
-              <p className="text-gray-600 text-sm mb-4">{project.description}</p>
+              <p className="text-white text-sm mb-4">{project.description}</p>
 
               {/* tech stack */}
               <div className="flex flex-wrap gap-2 mb-4">
