@@ -1,424 +1,963 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Syawalan Finanda — Full Stack Developer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#F7F7F4;
-    --bg-alt:#EFEFEA;
-    --panel:#FFFFFF;
-    --text:#14161A;
-    --text-muted:#5B5F66;
-    --accent:#3B4CFE;
-    --accent-soft:#E8EAFF;
-    --line:#DEDFD9;
-    --radius:2px;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:'Inter',sans-serif;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-0.02em;}
-  .mono{font-family:'JetBrains Mono',monospace;}
-  a{color:inherit;text-decoration:none;}
-  .wrap{max-width:1040px;margin:0 auto;padding:0 32px;}
-  @media (max-width:640px){.wrap{padding:0 20px;}}
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Syawalan – Portofolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #e6f0f1;
+        --ink: #13203b;
+        --muted: #4b5b78;
+        --card: #f7fbfb;
+        --coral: #ff5a5f;
+        --cobalt: #2f45ff;
+        --sun: #ffd84d;
+        --line: #13203b;
+        color-scheme: light;
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --bg: #0e1426;
+          --ink: #e9eef8;
+          --muted: #9caac4;
+          --card: #161e36;
+          --line: #e9eef8;
+          --coral: #ff7478;
+          --cobalt: #7c8cff;
+          --sun: #ffd84d;
+          color-scheme: dark;
+        }
+      }
+      :root[data-theme="dark"] {
+        --bg: #0e1426;
+        --ink: #e9eef8;
+        --muted: #9caac4;
+        --card: #161e36;
+        --line: #e9eef8;
+        --coral: #ff7478;
+        --cobalt: #7c8cff;
+        --sun: #ffd84d;
+        color-scheme: dark;
+      }
+      html {
+        scroll-padding-top: env(safe-area-inset-top, 0px);
+        scroll-behavior: smooth;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Figtree", system-ui, sans-serif;
+        font-size: 17px;
+        line-height: 1.65;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Bricolage Grotesque", "Figtree", system-ui, sans-serif;
+        line-height: 1.05;
+        margin: 0;
+        letter-spacing: -0.02em;
+      }
+      a {
+        color: inherit;
+      }
+      :focus-visible {
+        outline: 3px solid var(--cobalt);
+        outline-offset: 3px;
+      }
+      .wrap {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 0 22px;
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 22px 0;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      nav b {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: 20px;
+      }
+      nav div {
+        display: flex;
+        gap: 20px;
+      }
+      nav a {
+        text-decoration: none;
+        font-weight: 500;
+      }
+      nav a:hover {
+        text-decoration: underline;
+        text-decoration-color: var(--coral);
+        text-decoration-thickness: 3px;
+        text-underline-offset: 5px;
+      }
 
-  /* skip link for a11y */
-  .skip-link{position:absolute;left:-9999px;top:0;background:var(--accent);color:#fff;padding:10px 16px;z-index:200;}
-  .skip-link:focus{left:12px;top:12px;}
+      /* hero */
+      .hero {
+        padding: 48px 0 72px;
+      }
+      .hero h1 {
+        font-size: clamp(40px, 8.2vw, 92px);
+        font-weight: 800;
+        max-width: 11em;
+      }
+      .hl {
+        background: linear-gradient(transparent 58%, var(--sun) 58%);
+        padding: 0 0.08em;
+        color: #13203b;
+      }
+      .hero p {
+        max-width: 34em;
+        color: var(--muted);
+        font-size: 19px;
+        margin: 26px 0 0;
+      }
+      .tangle {
+        width: 100%;
+        height: auto;
+        margin-top: 38px;
+        display: block;
+      }
+      .tangle path {
+        fill: none;
+        stroke: var(--ink);
+        stroke-width: 5;
+        stroke-linecap: round;
+      }
+      .tangle .dot {
+        fill: var(--coral);
+        stroke: var(--ink);
+        stroke-width: 3;
+      }
+      .tangle .dot2 {
+        fill: var(--cobalt);
+        stroke: var(--ink);
+        stroke-width: 3;
+      }
+      .tangle text {
+        font:
+          700 15px "Figtree",
+          sans-serif;
+        fill: var(--ink);
+      }
+      .cta {
+        display: flex;
+        gap: 14px;
+        margin-top: 30px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-block;
+        padding: 13px 22px;
+        border: 2px solid var(--line);
+        border-radius: 999px;
+        font-weight: 700;
+        text-decoration: none;
+        background: var(--card);
+        box-shadow: 4px 4px 0 var(--line);
+        transition:
+          transform 0.12s,
+          box-shadow 0.12s;
+      }
+      .btn:hover {
+        transform: translate(2px, 2px);
+        box-shadow: 2px 2px 0 var(--line);
+      }
+      .btn.main {
+        background: var(--cobalt);
+        color: #fff;
+      }
 
-  /* ---------- NAV ---------- */
-  header{
-    position:fixed;top:0;left:0;right:0;z-index:100;
-    background:rgba(247,247,244,0.85);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  nav{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;max-width:1040px;margin:0 auto;}
-  @media (max-width:640px){nav{padding:16px 20px;}}
-  .logo{font-weight:600;font-size:16px;}
-  .logo span{color:var(--accent);}
-  .nav-links{display:flex;gap:32px;font-family:'JetBrains Mono',monospace;font-size:13px;}
-  .nav-links a{color:var(--text-muted);transition:color .2s;position:relative;}
-  .nav-links a:hover, .nav-links a:focus-visible{color:var(--text);}
-  .nav-links a::before{content:none;}
-  @media (max-width:640px){.nav-links{gap:18px;font-size:12px;}}
+      section {
+        padding: 72px 0;
+        border-top: 2px solid var(--line);
+      }
+      section > .wrap > h2 {
+        font-size: clamp(32px, 5vw, 54px);
+        font-weight: 800;
+        margin-bottom: 12px;
+      }
+      .lead {
+        color: var(--muted);
+        max-width: 38em;
+        margin: 0 0 40px;
+      }
 
-  /* ---------- HERO ---------- */
-  .hero{
-    min-height:100svh;
-    display:flex;
-    align-items:center;
-    position:relative;
-    overflow:hidden;
-    padding-top:72px;
-  }
-  .hero-grid{
-    display:grid;
-    grid-template-columns:1.3fr 1fr;
-    gap:40px;
-    align-items:center;
-    width:100%;
-  }
-  @media (max-width:800px){.hero-grid{grid-template-columns:1fr;}}
-  .eyebrow{
-    font-family:'JetBrains Mono',monospace;
-    font-size:13px;
-    color:var(--accent);
-    margin-bottom:18px;
-    display:flex;align-items:center;gap:10px;
-  }
-  .eyebrow::before{content:"";width:8px;height:8px;background:var(--accent);border-radius:50%;display:inline-block;animation:pulse 2s infinite;}
-  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
-  .hero h1{
-    font-size:clamp(40px,7vw,72px);
-    font-weight:700;
-    line-height:1.02;
-    margin-bottom:20px;
-  }
-  .hero .role{
-    font-size:clamp(18px,2.2vw,24px);
-    color:var(--text-muted);
-    font-weight:500;
-    margin-bottom:28px;
-  }
-  .terminal{
-    background:var(--text);
-    color:#D9FFE0;
-    font-family:'JetBrains Mono',monospace;
-    font-size:14px;
-    padding:18px 20px;
-    border-radius:var(--radius);
-    max-width:480px;
-    box-shadow:0 20px 40px -20px rgba(20,22,26,.4);
-  }
-  .terminal .bar{display:flex;gap:6px;margin-bottom:14px;}
-  .terminal .dot{width:9px;height:9px;border-radius:50%;background:#555;}
-  .terminal .line{white-space:nowrap;overflow:hidden;}
-  .terminal .prompt{color:#7CA9FF;}
-  .caret{display:inline-block;width:7px;height:14px;background:#D9FFE0;margin-left:2px;animation:blink 1s step-end infinite;vertical-align:middle;}
-  @keyframes blink{50%{opacity:0;}}
+      /* about */
+      .about {
+        display: grid;
+        grid-template-columns: 1.3fr 1fr;
+        gap: 44px;
+      }
+      .about p {
+        margin: 0 0 16px;
+      }
+      .facts {
+        background: var(--card);
+        border: 2px solid var(--line);
+        border-radius: 6px;
+        padding: 22px;
+        box-shadow: 6px 6px 0 var(--line);
+        align-self: start;
+      }
+      .facts dt {
+        font-weight: 700;
+        margin-top: 12px;
+      }
+      .facts dt:first-child {
+        margin-top: 0;
+      }
+      .facts dd {
+        margin: 0;
+        color: var(--muted);
+      }
 
-  .hero-visual{position:relative;height:340px;display:flex;align-items:center;justify-content:center;}
-  @media (max-width:800px){.hero-visual{display:none;}}
-  .hero-visual svg{width:100%;height:100%;}
-  .node{fill:var(--bg);stroke:var(--accent);stroke-width:1.6;}
-  .node.active{fill:var(--accent);}
-  .edge{stroke:var(--line);stroke-width:1.4;}
-  .edge.path{stroke:var(--accent);stroke-width:1.8;stroke-dasharray:4 4;animation:dash 3s linear infinite;}
-  @keyframes dash{to{stroke-dashoffset:-40;}}
+      /* method */
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        counter-reset: s;
+        border: 2px solid var(--line);
+        border-radius: 6px;
+        overflow: hidden;
+        background: var(--card);
+      }
+      .steps li {
+        list-style: none;
+        padding: 22px;
+        border-right: 2px solid var(--line);
+        counter-increment: s;
+      }
+      .steps li:last-child {
+        border-right: 0;
+      }
+      .steps li::before {
+        content: counter(s);
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: var(--sun);
+        color: #13203b;
+        font-weight: 800;
+        margin-bottom: 12px;
+      }
+      .steps b {
+        display: block;
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: 20px;
+        margin-bottom: 4px;
+      }
+      .steps span {
+        color: var(--muted);
+        font-size: 15px;
+        display: block;
+        line-height: 1.5;
+      }
+      .steps {
+        padding: 0;
+        margin: 0;
+      }
 
-  .scroll-cue{position:absolute;bottom:28px;left:32px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-muted);display:flex;align-items:center;gap:8px;}
-  .scroll-cue .bar-track{width:1px;height:30px;background:var(--line);position:relative;overflow:hidden;}
-  .scroll-cue .bar-fill{position:absolute;top:-30px;width:100%;height:30px;background:var(--accent);animation:scrollmove 1.6s ease-in-out infinite;}
-  @keyframes scrollmove{to{top:30px;}}
-  @media (max-width:640px){.scroll-cue{display:none;}}
+      /* projects */
+      .proj {
+        background: var(--card);
+        border: 2px solid var(--line);
+        border-radius: 6px;
+        box-shadow: 8px 8px 0 var(--line);
+        margin-bottom: 56px;
+        overflow: hidden;
+      }
+      .proj header {
+        padding: 26px 28px;
+        border-bottom: 2px solid var(--line);
+      }
+      .proj h3 {
+        font-size: clamp(26px, 4vw, 40px);
+        font-weight: 800;
+      }
+      .proj header p {
+        margin: 8px 0 14px;
+        color: var(--muted);
+        font-weight: 500;
+      }
+      .tags {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .tags span {
+        border: 2px solid var(--line);
+        border-radius: 999px;
+        padding: 2px 12px;
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .row {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        border-bottom: 2px solid var(--line);
+      }
+      .row:last-child {
+        border-bottom: 0;
+      }
+      .proj header .btn {
+        margin-top: 18px;
+        padding: 8px 18px;
+        font-size: 15px;
+        box-shadow: 3px 3px 0 var(--line);
+      }
+      .row > h4 {
+        margin: 0;
+        padding: 22px 24px;
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: 21px;
+        font-weight: 800;
+        border-right: 2px solid var(--line);
+        color: #13203b;
+      }
+      .row > div {
+        padding: 22px 28px;
+      }
+      .row > div p {
+        margin: 0 0 10px;
+      }
+      .row > div p:last-child {
+        margin: 0;
+      }
+      .r1 > h4 {
+        background: var(--coral);
+      }
+      .r2 > h4 {
+        background: var(--sun);
+      }
+      .r3 > h4 {
+        background: var(--cobalt);
+        color: #fff;
+      }
+      .r4 > h4 {
+        background: var(--bg);
+        color: var(--ink);
+      }
+      .row ul {
+        margin: 6px 0 0;
+        padding-left: 20px;
+      }
+      .row li {
+        margin: 4px 0;
+      }
+      .nums {
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+      .nums div {
+        padding: 0 !important;
+      }
+      .nums b {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: 36px;
+        display: block;
+        line-height: 1;
+      }
+      .nums span {
+        font-size: 14px;
+        color: var(--muted);
+      }
+      code {
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.9em;
+        background: var(--bg);
+        padding: 1px 6px;
+        border-radius: 4px;
+      }
 
-  /* ---------- SECTION shared ---------- */
-  section{padding:110px 0;}
-  @media (max-width:640px){section{padding:72px 0;}}
-  .section-head{display:flex;align-items:baseline;gap:16px;margin-bottom:48px;}
-  .section-num{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:14px;}
-  .section-head h2{font-size:clamp(28px,4vw,38px);}
-  .section-head .rule{flex:1;height:1px;background:var(--line);}
+      /* skills */
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .skills button {
+        font:
+          700 16px "Figtree",
+          sans-serif;
+        color: var(--ink);
+        background: var(--card);
+        border: 2px solid var(--line);
+        border-radius: 999px;
+        padding: 8px 18px;
+        cursor: pointer;
+        box-shadow: 3px 3px 0 var(--line);
+      }
+      .skills button[aria-pressed="true"] {
+        background: var(--sun);
+        color: #13203b;
+      }
+      #skillnote {
+        margin-top: 22px;
+        min-height: 3.4em;
+        max-width: 40em;
+        color: var(--muted);
+      }
 
-  /* ---------- ABOUT ---------- */
-  .about{background:var(--bg-alt);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-  .about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:64px;}
-  @media (max-width:800px){.about-grid{grid-template-columns:1fr;gap:40px;}}
-  .about-bio p{font-size:17px;color:var(--text);max-width:52ch;}
-  .about-bio p + p{margin-top:16px;}
-  .skills-label{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-muted);margin-bottom:14px;letter-spacing:.05em;text-transform:uppercase;}
-  .skill-tags{display:flex;flex-wrap:wrap;gap:10px;}
-  .skill-tag{
-    font-family:'JetBrains Mono',monospace;
-    font-size:13px;
-    padding:8px 14px;
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    transition:border-color .2s, transform .2s;
-  }
-  .skill-tag:hover{border-color:var(--accent);transform:translateY(-2px);}
+      footer {
+        padding: 72px 0 90px;
+        border-top: 2px solid var(--line);
+      }
+      footer h2 {
+        font-size: clamp(34px, 6vw, 70px);
+        font-weight: 800;
+        max-width: 12em;
+      }
+      footer p {
+        color: var(--muted);
+        margin: 16px 0 0;
+      }
 
-  /* ---------- PROJECTS ---------- */
-  .project-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;}
-  .project-card{
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    overflow:hidden;
-    display:flex;flex-direction:column;
-    min-width:0;
-    transition:border-color .25s, box-shadow .25s, transform .25s;
-  }
-  .project-card:hover{border-color:var(--accent);box-shadow:0 24px 48px -30px rgba(20,22,26,.25);transform:translateY(-4px);}
-  .project-card:hover .project-thumb img{transform:scale(1.04);}
-  .project-thumb{
-    aspect-ratio:16/10;
-    overflow:hidden;
-    background:var(--bg-alt);
-    border-bottom:1px solid var(--line);
-  }
-  .project-thumb img{
-    width:100%;height:100%;object-fit:cover;display:block;
-    transition:transform .4s ease;
-  }
-  .project-body{padding:24px 28px 28px;display:flex;flex-direction:column;flex:1;}
-  .project-index{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);margin-bottom:14px;}
-  .project-card h3{font-size:20px;margin-bottom:10px;}
-  .project-card p{color:var(--text-muted);font-size:14.5px;flex:1;margin-bottom:18px;}
-  .project-tech{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
-  .project-tech span{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--text-muted);background:var(--bg-alt);padding:4px 9px;border-radius:var(--radius);}
-  .project-links{display:flex;gap:18px;font-family:'JetBrains Mono',monospace;font-size:13px;}
-  .project-links a{color:var(--accent);border-bottom:1px solid transparent;}
-  .project-links a:hover{border-bottom-color:var(--accent);}
-  .project-empty-note{margin-top:36px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--text-muted);border:1px dashed var(--line);padding:16px 18px;border-radius:var(--radius);}
-
-  /* ---------- CONTACT ---------- */
-  .contact{background:var(--text);color:var(--bg);}
-  .contact .section-num, .contact .section-head .rule{opacity:.35;}
-  .contact .section-head .rule{background:#5B5F66;}
-  .contact .section-head h2{color:#fff;}
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
-  @media (max-width:800px){.contact-grid{grid-template-columns:1fr;}}
-  .contact-lead{font-size:19px;color:#C9CBD1;max-width:38ch;margin-bottom:28px;}
-  .contact-cta{
-    display:inline-flex;align-items:center;gap:10px;
-    font-family:'JetBrains Mono',monospace;font-size:14px;
-    background:var(--accent);color:#fff;
-    padding:14px 22px;border-radius:var(--radius);
-    transition:background .2s;
-  }
-  .contact-cta:hover{background:#5468FF;}
-  .contact-list{display:flex;flex-direction:column;gap:0;}
-  .contact-row{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:16px 0;border-bottom:1px solid #2B2E35;
-    font-family:'JetBrains Mono',monospace;font-size:14px;
-  }
-  .contact-row .label{color:#7A7E86;}
-  .contact-row a{color:#fff;}
-  .contact-row a:hover{color:var(--accent-soft);}
-
-  footer{padding:28px 0;text-align:center;font-family:'JetBrains Mono',monospace;font-size:12px;color:#7A7E86;background:var(--text);border-top:1px solid #2B2E35;}
-
-  /* reveal on scroll */
-  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease;}
-  .reveal.in{opacity:1;transform:translateY(0);}
-
-  @media (prefers-reduced-motion: reduce){
-    *{animation:none !important;transition:none !important;}
-    html{scroll-behavior:auto;}
-  }
-
-  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
-</style>
-</head>
-<body>
-<a href="#about" class="skip-link">Langsung ke konten</a>
-
-<header>
-  <nav aria-label="Navigasi utama">
-    <a href="#top" class="logo">SF<span>.</span>dev</a>
-    <div class="nav-links">
-      <a href="#about">tentang</a>
-      <a href="#projects">proyek</a>
-      <a href="#contact">kontak</a>
-    </div>
-  </nav>
-</header>
-
-<main id="top">
-  <!-- ================= HERO ================= -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <div class="eyebrow mono">tersedia untuk kolaborasi</div>
-        <h1>Syawalan<br>Finanda</h1>
-        <p class="role">Full Stack Developer</p>
-        <div class="terminal" aria-hidden="true">
-          <div class="bar"><div class="dot" style="background:#FF5F57;"></div><div class="dot" style="background:#FEBC2E;"></div><div class="dot" style="background:#28C840;"></div></div>
-          <div class="line"><span class="prompt">syawalan@dev</span>:~$ whoami</div>
-          <div class="line" style="margin-top:6px;">full-stack developer & algorithm tinkerer<span class="caret"></span></div>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <svg viewBox="0 0 300 300" role="img" aria-label="Ilustrasi graf pencarian">
-          <line class="edge" x1="60" y1="60" x2="150" y2="40"/>
-          <line class="edge" x1="60" y1="60" x2="50" y2="160"/>
-          <line class="edge path" x1="150" y1="40" x2="230" y2="90"/>
-          <line class="edge" x1="150" y1="40" x2="140" y2="150"/>
-          <line class="edge path" x1="230" y1="90" x2="220" y2="200"/>
-          <line class="edge" x1="50" y1="160" x2="140" y2="150"/>
-          <line class="edge" x1="140" y1="150" x2="220" y2="200"/>
-          <line class="edge path" x1="140" y1="150" x2="230" y2="90"/>
-          <line class="edge" x1="50" y1="160" x2="90" y2="250"/>
-          <line class="edge" x1="140" y1="150" x2="90" y2="250"/>
-          <circle class="node active" cx="60" cy="60" r="7"/>
-          <circle class="node" cx="150" cy="40" r="7"/>
-          <circle class="node" cx="230" cy="90" r="7"/>
-          <circle class="node" cx="50" cy="160" r="7"/>
-          <circle class="node" cx="140" cy="150" r="7"/>
-          <circle class="node active" cx="220" cy="200" r="7"/>
-          <circle class="node" cx="90" cy="250" r="7"/>
-        </svg>
-      </div>
-    </div>
-    <div class="scroll-cue"><div class="bar-track"><div class="bar-fill"></div></div>scroll</div>
-  </section>
-
-  <!-- ================= ABOUT ================= -->
-  <section class="about" id="about">
+      @media (max-width: 820px) {
+        .about {
+          grid-template-columns: 1fr;
+        }
+        .steps {
+          grid-template-columns: 1fr 1fr;
+        }
+        .steps li:nth-child(2) {
+          border-right: 0;
+        }
+        .steps li:nth-child(-n + 2) {
+          border-bottom: 2px solid var(--line);
+        }
+        .row {
+          grid-template-columns: 1fr;
+        }
+        .row > h4 {
+          border-right: 0;
+          border-bottom: 2px solid var(--line);
+          padding: 12px 22px;
+          font-size: 19px;
+        }
+        .row > div {
+          padding: 18px 22px;
+        }
+        .proj {
+          box-shadow: 5px 5px 0 var(--line);
+        }
+      }
+      @media (max-width: 480px) {
+        .steps {
+          grid-template-columns: 1fr;
+        }
+        .steps li {
+          border-right: 0 !important;
+          border-bottom: 2px solid var(--line);
+        }
+        .steps li:last-child {
+          border-bottom: 0;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .btn {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
     <div class="wrap">
-      <div class="section-head reveal">
-        <span class="section-num">01</span>
-        <h2>Tentang</h2>
-        <div class="rule"></div>
-      </div>
-      <div class="about-grid">
-        <div class="about-bio reveal">
-          <p>Full-stack developer yang suka ngulik kode dan ngebangun aplikasi web dari nol. Spesialisasi dalam pembuatan aplikasi web full-stack dan solusi optimasi algoritma.</p>
-          <p>Berpengalaman membangun aplikasi web modern menggunakan framework modern, serta mengembangkan algoritma pencarian dan optimasi untuk menyelesaikan masalah nyata secara efisien.</p>
-        </div>
-        <div class="reveal">
-          <div class="skills-label">Tech stack</div>
-          <div class="skill-tags">
-            <span class="skill-tag">HTML</span>
-            <span class="skill-tag">CSS</span>
-            <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">React</span>
-            <span class="skill-tag">Next.js</span>
-            <span class="skill-tag">Node.js</span>
-            <span class="skill-tag">Express.js</span>
-            <span class="skill-tag">Laravel</span>
-            <span class="skill-tag">PHP</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= PROJECTS ================= -->
-  <section id="projects">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="section-num">02</span>
-        <h2>Proyek</h2>
-        <div class="rule"></div>
-        <div class="project-links">
-              <a href="https://github.com/Syawalan" target="_blank" rel="noopener">lainnya →</a>
-        </div>
-      </div>
-
-      <div class="project-grid reveal">
-        <!--
-          CARA MENAMBAH PROYEK:
-          Copy 1 blok <article class="project-card"> di bawah ini, lalu ganti isinya.
-        -->
-        <article class="project-card">
-          <div class="project-thumb">
-            <!-- Ganti src di bawah dengan screenshot proyek kamu -->
-            <img src="image/project-1.png" alt="Screenshot Sistem Penjadwalan Akademik">
-          </div>
-          <div class="project-body">
-            <div class="project-index">// 01</div>
-            <h3>Sistem Penjadwalan Akademik</h3>
-            <p>Aplikasi web full-stack yang dirancang untuk membantu tim prodi dan PJPJK mengelola penjadwalan perkuliahan secara terstruktur.</p>
-            <div class="project-tech">
-              <span>React</span><span>Node.js</span><span>Express.Js</span><span>Prisma ORM</span><span>Postgresql</span>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com/Syawalan/schedule_app" target="_blank" rel="noopener">GitHub →</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-thumb">
-            <img src="image/project-2.png" alt="Screenshot Aplikasi SPK Metode ELECTRE">
-          </div>
-          <div class="project-body">
-            <div class="project-index">// 02</div>
-            <h3>Aplikasi Sistem Pendukung Keputusan (SPK) Metode ELECTRE Berbasis Web</h3>
-            <p>Aplikasi ini mengevaluasi alternatif multi-kriteria dengan menentukan hubungan outranking berbasis matriks concordance dan discordance.</p>
-            <div class="project-tech">
-              <span>Laravel</span><span>TailwindCSS</span><span>Eloquent ORM</span><span>MySQL</span>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com/Syawalan/spk-electre" target="_blank" rel="noopener">GitHub →</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-thumb">
-            <img src="image/project-3.png" alt="Screenshot BaseCamp">
-          </div>
-          <div class="project-body">
-            <div class="project-index">// 03</div>
-            <h3>BaseCamp</h3>
-            <p>BaseCamp adalah platform komunitas digital untuk mahasiswa dan alumni yang berfokus pada networking, berbagi informasi akademik, peluang karier, dan komunikasi antaranggota.</p>
-            <div class="project-tech">
-              <span>Express.js</span><span>PHP</span><span>REST API</span>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com/Syawalan/basecamp" target="_blank" rel="noopener">GitHub →</a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= CONTACT ================= -->
-  <section class="contact" id="contact">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="section-num mono">03</span>
-        <h2>Kontak</h2>
-        <div class="rule"></div>
-      </div>
-      <div class="contact-grid reveal">
+      <nav aria-label="Navigasi utama">
+        <b>Syawalan</b>
         <div>
-          <p class="contact-lead">Punya proyek atau ide yang ingin didiskusikan? Kirim pesan, saya akan balas secepatnya.</p>
-          <a class="contact-cta" href="mailto:email-kamu@contoh.com">kirim email →</a>
+          <a href="#tentang">Tentang</a><a href="#cara">Cara kerja</a
+          ><a href="#project">Project</a><a href="#kontak">Kontak</a>
         </div>
-        <div class="contact-list">
-          <div class="contact-row"><span class="label">Email</span><a href="mailto:email-syawalanf@gmail.com">email-syawalanf@gmail.com</a></div>
-          <div class="contact-row"><span class="label">WhatsApp</span><a href="https://wa.me/6281374136465" target="_blank" rel="noopener">+62 813-7413-6465</a></div>
-          <div class="contact-row"><span class="label">GitHub</span><a href="https://github.com/Syawalan" target="_blank" rel="noopener">github.com/Syawalan</a></div>
-          <div class="contact-row"><span class="label">LinkedIn</span><a href="https://www.linkedin.com/in/syawalan-finanda-402534312" target="_blank" rel="noopener">linkedin.com/in/Syawalan Finanda</a></div>
-          <div class="contact-row"><span class="label">Instagram</span><a href="https://www.instagram.com/syawalan_alan_/" target="_blank" rel="noopener">@syawalan_alan_</a></div>
+      </nav>
+
+      <main>
+        <div class="hero">
+          <h1>
+            Saya mengurai masalah yang <span class="hl">kusut</span> jadi sistem
+            yang rapi.
+          </h1>
+          <p>
+            Lulusan Teknik Informatika yang suka bertanya “kenapa ini bisa
+            rusak?” sebelum menulis satu baris kode. Saya membangun aplikasi web
+            dan sistem otomatis untuk masalah yang benar-benar ada di kampus dan
+            sekitar kita.
+          </p>
+
+          <svg
+            class="tangle"
+            id="tangle"
+            viewBox="0 0 600 200"
+            role="img"
+            aria-label="Garis kusut yang perlahan menjadi lurus, melambangkan masalah yang diurai menjadi solusi"
+          >
+            <path
+              id="line"
+              d="M10 100 C 80 -30, 140 230, 200 100 S 320 -50, 380 110 S 500 240, 590 100"
+            >
+              <animate
+                id="anim"
+                attributeName="d"
+                begin="0.8s"
+                dur="2.6s"
+                fill="freeze"
+                calcMode="spline"
+                keySplines="0.6 0 0.2 1"
+                keyTimes="0;1"
+                values="M10 100 C 80 -30, 140 230, 200 100 S 320 -50, 380 110 S 500 240, 590 100;M10 100 C 80 100, 140 100, 200 100 S 320 100, 380 100 S 500 100, 590 100"
+              />
+            </path>
+            <circle class="dot" cx="10" cy="100" r="11" />
+            <circle class="dot2" cx="590" cy="100" r="11" />
+            <text x="10" y="148">Masalah</text>
+            <text x="590" y="148" text-anchor="end">Solusi</text>
+          </svg>
+
+          <div class="cta">
+            <a class="btn main" href="#project"
+              >Lihat cara saya memecahkan masalah</a
+            >
+            <a class="btn" href="#kontak">Ajak saya bicara</a>
+          </div>
         </div>
-      </div>
+
+        <section id="tentang">
+          <div class="wrap" style="padding: 0">
+            <h2>Tentang saya</h2>
+            <div class="about">
+              <div>
+                <p>
+                  Saya baru lulus dari Teknik Informatika dan sedang mencari
+                  tempat pertama untuk bertumbuh sebagai software engineer. Saya
+                  tidak jatuh cinta pada teknologi tertentu. Saya jatuh cinta
+                  pada momen ketika orang bilang, “oh, jadi lebih gampang
+                  sekarang.”
+                </p>
+                <p>
+                  Di kampus saya belajar bahwa kode yang bagus lahir dari
+                  pemahaman masalah yang bagus. Karena itu setiap project saya
+                  mulai dengan ngobrol dengan orang yang mengalami masalahnya,
+                  bukan dengan memilih framework.
+                </p>
+                <p>
+                  Saat tidak ngoding, saya ikut komunitas developer lokal dan
+                  menggambar ilustrasi digital. Selera desain di halaman ini
+                  hasil dari sana.
+                </p>
+              </div>
+              <dl class="facts">
+                <dt>Pendidikan</dt>
+                <dd>S1 Teknik Informatika</dd>
+                <dt>Fokus</dt>
+                <dd>
+                  Web full-stack, algoritma penjadwalan, sistem pendukung
+                  keputusan
+                </dd>
+                <dt>Sedang dicari</dt>
+                <dd>
+                  Posisi junior / associate software engineer, atau magang
+                  lanjutan
+                </dd>
+                <dt>Berbasis di</dt>
+                <dd>Riau, terbuka untuk remote</dd>
+              </dl>
+            </div>
+          </div>
+        </section>
+
+        <section id="cara">
+          <div class="wrap" style="padding: 0">
+            <h2>Cara saya bekerja</h2>
+            <p class="lead">
+              Urutan yang sama saya pakai di setiap project, dari tugas kuliah
+              sampai proyek untuk pengguna nyata.
+            </p>
+            <ol class="steps">
+              <li>
+                <b>Dengar</b
+                ><span>Wawancara pengguna dan amati alur kerja aslinya.</span>
+              </li>
+              <li>
+                <b>Bedah</b><span>Cari akar masalah, bukan gejalanya.</span>
+              </li>
+              <li>
+                <b>Bangun kecil</b
+                ><span>Rilis versi paling sederhana yang sudah menolong.</span>
+              </li>
+              <li>
+                <b>Ukur</b
+                ><span>Cek angka sebelum dan sesudah, lalu perbaiki.</span>
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <section id="project">
+          <div class="wrap" style="padding: 0">
+            <h2>Project</h2>
+            <p class="lead">
+              Tiap project saya tulis sebagai catatan pemecahan masalah: apa
+              yang bermasalah, apa akar penyebabnya, apa yang saya bangun, dan
+              apa hasilnya.
+            </p>
+
+            <article class="proj">
+              <header>
+                <h3>Basecamp</h3>
+                <p>
+                  Platform komunitas untuk mahasiswa dan alumni program studi
+                </p>
+                <div class="tags">
+                  <span>Laravel 10</span><span>Livewire 3</span
+                  ><span>Tailwind CSS</span><span>MySQL</span>
+                </div>
+                <a
+                  class="btn"
+                  href="https://github.com/Syawalan/basecamp"
+                  target="_blank"
+                  rel="noopener"
+                  >Lihat kode di GitHub</a
+                >
+              </header>
+              <div class="row r1">
+                <h4>Masalah</h4>
+                <div>
+                  <p>
+                    Informasi dari program studi dikirim lewat grup WhatsApp. Di
+                    tengah banyaknya room chat, pengumuman tenggelam, dan
+                    sebagian mahasiswa bahkan mengarsipkan grupnya, sehingga
+                    informasi penting terlewat.
+                  </p>
+                  <p>
+                    Di sisi lain, mahasiswa aktif hampir tidak mengenal alumni.
+                    Alumni yang sudah bekerja jarang berbagi pengalaman ke
+                    adik-adiknya, dan lowongan kerja pun diselipkan di grup yang
+                    sama.
+                  </p>
+                </div>
+              </div>
+              <div class="row r2">
+                <h4>Temuan</h4>
+                <div>
+                  <p>
+                    Masalahnya bukan mahasiswa yang malas membaca. WhatsApp
+                    dirancang untuk mengobrol, bukan untuk menyimpan informasi.
+                    Empat kebutuhan yang berbeda tercampur di satu tempat:
+                    informasi resmi, diskusi, relasi dengan alumni, dan
+                    lowongan.
+                  </p>
+                  <p>
+                    Jadi akar masalahnya adalah <b>wadah yang salah</b>, bukan
+                    kurangnya pengumuman.
+                  </p>
+                </div>
+              </div>
+              <div class="row r3">
+                <h4>Solusi</h4>
+                <div>
+                  <p>
+                    Saya memisahkan setiap kebutuhan ke ruangnya sendiri dalam
+                    satu platform:
+                  </p>
+                  <ul>
+                    <li>
+                      <b>Ruang informasi:</b> pengumuman resmi dari admin,
+                      dikelompokkan menurut akademik, karier, seminar, dan umum.
+                    </li>
+                    <li>
+                      <b>Ruang diskusi:</b> feed komunitas dengan posting, like,
+                      dan komentar.
+                    </li>
+                    <li>
+                      <b>Ruang komunikasi:</b> direktori alumni yang bisa
+                      dicari, profil akademik dan pekerjaan, serta pesan
+                      langsung.
+                    </li>
+                    <li>
+                      <b>Ruang lowongan:</b> pusat karier yang lowongannya
+                      diverifikasi admin sebelum tampil.
+                    </li>
+                  </ul>
+                  <p>
+                    Hak akses dibagi tiga peran (admin, mahasiswa, alumni)
+                    supaya setiap orang hanya melihat dan mengelola yang menjadi
+                    bagiannya.
+                  </p>
+                </div>
+              </div>
+              <div class="row r4">
+                <h4>Hasil</h4>
+                <div class="nums">
+                  <div>
+                    <b>4</b
+                    ><span>ruang yang dulu bercampur di satu grup chat</span>
+                  </div>
+                  <div>
+                    <b>3</b><span>peran pengguna dengan hak akses berbeda</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="proj">
+              <header>
+                <h3>Schedule App</h3>
+                <p>Penyusunan jadwal kuliah teori otomatis</p>
+                <div class="tags">
+                  <span>Penjadwalan otomatis</span
+                  ><span>Kombinasi algoritma</span
+                  ><span>Aturan yang dapat diatur</span>
+                </div>
+                <a
+                  class="btn"
+                  href="https://github.com/Syawalan/schedule_app"
+                  target="_blank"
+                  rel="noopener"
+                  >Lihat kode di GitHub</a
+                >
+              </header>
+              <div class="row r1">
+                <h4>Masalah</h4>
+                <div>
+                  <p>
+                    Jadwal kuliah teori seluruh program studi disusun manual di
+                    Microsoft Word oleh satu penanggung jawab. Pekerjaan ini
+                    memakan sekitar dua minggu, dan jadwal yang jadi pun masih
+                    bisa bentrok.
+                  </p>
+                  <p>
+                    Saat ada kelas yang mendadak ingin pindah ruangan,
+                    penanggung jawab harus membuka kembali file jadwal, mencari
+                    ruang kosong satu per satu, lalu mencocokkannya lagi.
+                  </p>
+                </div>
+              </div>
+              <div class="row r2">
+                <h4>Temuan</h4>
+                <div>
+                  <p>
+                    Menyusun jadwal pada dasarnya adalah memenuhi banyak batasan
+                    sekaligus: dosen, ruangan, hari, jam, dan kelas tidak boleh
+                    saling bertabrakan. Manusia baik dalam memutuskan, tapi
+                    lambat dan mudah luput saat harus memeriksa ribuan
+                    kombinasi.
+                  </p>
+                  <p>
+                    Ditambah data tersimpan di dokumen, jadi setiap perubahan
+                    kecil berarti membaca ulang semuanya.
+                  </p>
+                </div>
+              </div>
+              <div class="row r3">
+                <h4>Solusi</h4>
+                <div>
+                  <p>
+                    Saya serahkan pekerjaan memeriksa kombinasi kepada komputer
+                    dengan sistem penjadwalan otomatis berbasis kombinasi
+                    algoritma, dan membagi tugas input berdasarkan siapa yang
+                    paling tahu datanya:
+                  </p>
+                  <ul>
+                    <li>
+                      <b>Program studi</b> mengisi data kelas, data dosen, dan
+                      preferensi waktu mengajar dosen.
+                    </li>
+                    <li>
+                      <b>Penanggung jawab</b> mengisi data ruangan, memantau
+                      data dari setiap prodi, dan menetapkan aturan penyusunan
+                      jadwal.
+                    </li>
+                  </ul>
+                  <p>
+                    Karena data ruangan dan jadwal sudah terpusat, penanggung
+                    jawab tidak lagi membuka file satu per satu saat ada
+                    perubahan.
+                  </p>
+                </div>
+              </div>
+              <div class="row r4">
+                <h4>Hasil</h4>
+                <div class="nums">
+                  <div>
+                    <b>&lt; 5 menit</b
+                    ><span
+                      >waktu menyusun jadwal, sebelumnya sekitar 2 minggu</span
+                    >
+                  </div>
+                  <div>
+                    <b>≈ 0</b
+                    ><span>konflik jadwal bentrok pada hasil penyusunan</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="proj">
+              <header>
+                <h3>SPK Metode ELECTRE</h3>
+                <p>Aplikasi web sistem pendukung keputusan</p>
+                <div class="tags">
+                  <span>Aplikasi web</span
+                  ><span>Sistem pendukung keputusan</span><span>ELECTRE</span>
+                </div>
+                <a
+                  class="btn"
+                  href="https://github.com/Syawalan/spk-electre"
+                  target="_blank"
+                  rel="noopener"
+                  >Lihat kode di GitHub</a
+                >
+              </header>
+              <div class="row r1">
+                <h4>Masalah</h4>
+                <div>
+                  <p>
+                    Memilih satu alternatif terbaik dari banyak pilihan dan
+                    banyak kriteria sering dilakukan dengan perasaan atau dengan
+                    menjumlahkan nilai secara manual. Padahal setiap kriteria
+                    punya bobot kepentingan yang berbeda, dan keputusannya jadi
+                    sulit dipertanggungjawabkan.
+                  </p>
+                </div>
+              </div>
+              <div class="row r2">
+                <h4>Temuan</h4>
+                <div>
+                  <p>
+                    Menjumlahkan nilai punya kelemahan: alternatif yang sangat
+                    buruk pada satu kriteria bisa tertutupi oleh nilai bagus di
+                    kriteria lain. Yang dibutuhkan adalah cara membandingkan
+                    alternatif secara berpasangan.
+                  </p>
+                  <p>
+                    Metode ELECTRE melakukannya dengan menimbang kapan sebuah
+                    alternatif lebih unggul (concordance) dan kapan ia terlalu
+                    lemah untuk diterima (discordance). Perhitungannya
+                    berlapis-lapis dan rawan salah bila dikerjakan di tangan.
+                  </p>
+                </div>
+              </div>
+              <div class="row r3">
+                <h4>Solusi</h4>
+                <div>
+                  <p>
+                    Saya membangun aplikasi web yang mengerjakan tahapan ELECTRE
+                    secara otomatis. Pengguna cukup memasukkan alternatif,
+                    kriteria, dan bobot. Aplikasi lalu menghitung normalisasi,
+                    pembobotan, matriks concordance dan discordance, hingga
+                    matriks dominan, dan menghasilkan peringkat alternatif.
+                  </p>
+                </div>
+              </div>
+              <div class="row r4">
+                <h4>Hasil</h4>
+                <div>
+                  <p>
+                    Perhitungan manual yang panjang dan rawan salah kini
+                    diselesaikan otomatis, sehingga pengambil keputusan bisa
+                    fokus menentukan kriteria dan bobot, bukan menghitung.
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="skill">
+          <div class="wrap" style="padding: 0">
+            <h2>Alat yang saya pakai</h2>
+            <p class="lead">
+              Klik salah satu untuk melihat bagaimana saya memakainya.
+            </p>
+            <div class="skills" id="skills"></div>
+            <p id="skillnote" aria-live="polite">Pilih satu alat di atas.</p>
+          </div>
+        </section>
+      </main>
+
+      <footer id="kontak">
+        <h2>Punya masalah yang belum terurai? Ayo kita bedah bersama.</h2>
+        <p>
+          syawalanf@gmail.com &nbsp;|&nbsp; github.com/Syawalan &nbsp;|&nbsp;
+          linkedin.com/in/Syawalan
+        </p>
+        <div class="cta">
+          <a class="btn main" href="mailto:email@anda.com">Kirim email</a
+          ><a class="btn" href="#">Unduh CV</a>
+        </div>
+      </footer>
     </div>
-  </section>
-</main>
 
-<footer>© <span id="year"></span> Syawalan Finanda — dibangun dengan HTML &amp; CSS murni.</footer>
-
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-    });
-  }, {threshold:0.15});
-  revealEls.forEach(el=>io.observe(el));
-</script>
-</body>
+    <script>
+      (function () {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          var l = document.getElementById("line"),
+            a = document.getElementById("anim");
+          if (a) {
+            a.remove();
+          }
+          l.setAttribute(
+            "d",
+            "M10 100 C 80 100, 140 100, 200 100 S 320 100, 380 100 S 500 100, 590 100",
+          );
+        }
+        var data = {
+          "PHP / Laravel":
+            "Tulang punggung Basecamp: autentikasi, hak akses berbasis peran, dan migrasi database yang rapi.",
+          Livewire:
+            "Antarmuka interaktif seperti feed, like, dan komentar tanpa menulis banyak JavaScript.",
+          "Tailwind CSS": "Tampilan responsif yang konsisten dan cepat dibuat.",
+          MySQL:
+            "Merancang skema dari alur kerja nyata, misalnya relasi pengguna, posting, lowongan, dan pesan.",
+          Algoritma:
+            "Memodelkan batasan, seperti dosen, ruang, dan waktu pada Schedule App, lalu membiarkan komputer mencari kombinasi yang valid.",
+          Git: "Menjaga riwayat kerja tetap rapi dan mudah ditelusuri.",
+        };
+        var box = document.getElementById("skills"),
+          note = document.getElementById("skillnote");
+        Object.keys(data).forEach(function (k) {
+          var b = document.createElement("button");
+          b.type = "button";
+          b.textContent = k;
+          b.setAttribute("aria-pressed", "false");
+          b.addEventListener("click", function () {
+            box.querySelectorAll("button").forEach(function (x) {
+              x.setAttribute("aria-pressed", "false");
+            });
+            b.setAttribute("aria-pressed", "true");
+            note.textContent = data[k];
+          });
+          box.appendChild(b);
+        });
+      })();
+    </script>
+  </body>
 </html>
